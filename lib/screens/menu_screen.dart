@@ -221,11 +221,17 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                   ],
                   const SizedBox(height: 22),
-                  _PuzzleCard(theme: t, state: this),
+                  _PuzzleCard(
+                      theme: t,
+                      state: this,
+                      onPuzzle: (i) => setState(() => _puzzleIdx = i)),
                   const SizedBox(height: 14),
                   _NameCard(theme: t, state: this),
                   const SizedBox(height: 14),
-                  _ThemeCard(theme: t, state: this),
+                  _ThemeCard(
+                      theme: t,
+                      state: this,
+                      onRefresh: () => setState(() {})),
                   const SizedBox(height: 14),
                   _StyleCard(theme: t, state: this),
                   const SizedBox(height: 14),
@@ -369,7 +375,9 @@ class _MenuScreenState extends State<MenuScreen> {
 class _PuzzleCard extends StatelessWidget {
   final PressThemeDef theme;
   final _MenuScreenState state;
-  const _PuzzleCard({required this.theme, required this.state});
+  final ValueChanged<int> onPuzzle;
+  const _PuzzleCard(
+      {required this.theme, required this.state, required this.onPuzzle});
 
   static const tierNames = ['MINI — easy', 'CLASSIC — medium', 'EXPERT — hard'];
 
@@ -436,7 +444,7 @@ class _PuzzleCard extends StatelessWidget {
           return;
         }
         state.widget.audio.click();
-        state.setState(() => state._puzzleIdx = i);
+        onPuzzle(i);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -517,7 +525,9 @@ class _NameCard extends StatelessWidget {
 class _ThemeCard extends StatelessWidget {
   final PressThemeDef theme;
   final _MenuScreenState state;
-  const _ThemeCard({required this.theme, required this.state});
+  final VoidCallback onRefresh;
+  const _ThemeCard(
+      {required this.theme, required this.state, required this.onRefresh});
 
   @override
   Widget build(BuildContext context) {
@@ -540,7 +550,7 @@ class _ThemeCard extends StatelessWidget {
                       settings: s,
                     ),
                   ));
-                  if (context.mounted) state.setState(() {});
+                  if (context.mounted) onRefresh();
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
