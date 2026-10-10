@@ -38,7 +38,6 @@ class _MenuScreenState extends State<MenuScreen> {
     super.initState();
     _store = StoreService();
     _store.init();
-    _store.proPurchased.addListener(_onPro);
     _store.lastThanks.addListener(_onThanks);
     _nameCtrl.text = _s.playerNames[0];
     _pickFirstUnlocked();
@@ -54,15 +53,7 @@ class _MenuScreenState extends State<MenuScreen> {
     }
   }
 
-  void _onPro() {
-    if (_store.proPurchased.value && mounted) {
-      _s.setPro(true);
-      widget.audio.win();
-      _store.proPurchased.value = false;
-      setState(() {});
-    }
-  }
-
+  
   void _onThanks() {
     final msg = _store.lastThanks.value;
     if (msg == null || !mounted) return;
@@ -79,7 +70,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   void dispose() {
-    _store.proPurchased.removeListener(_onPro);
     _store.lastThanks.removeListener(_onThanks);
     _store.dispose();
     _nameCtrl.dispose();

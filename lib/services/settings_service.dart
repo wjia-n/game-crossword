@@ -62,7 +62,7 @@ class PressSettings extends ChangeNotifier {
   int puzzlesSolved = 0;
   int hintsUsed = 0;
   Map<String, int> bestTimes = {};
-  bool isPro = false;
+  bool isPro = true; // everything unlocked — no Pro version
 
   /// Custom theme colors (ARGB ints). Defaults mirror Morning Edition.
   Map<String, int> customColors = Map.of(_defaultCustomColors);
@@ -141,7 +141,7 @@ class PressSettings extends ChangeNotifier {
         }
       }
     } catch (_) {}
-    isPro = p.getBool(_kIsPro) ?? false;
+    isPro = true; // everything unlocked
     for (final k in _defaultCustomColors.keys) {
       customColors[k] = p.getInt('$_kCustomPrefix$k') ?? _defaultCustomColors[k]!;
     }
