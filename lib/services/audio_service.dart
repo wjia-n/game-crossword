@@ -198,21 +198,6 @@ class PressAudio {
     return out;
   }
 
-  /// Plucked string (Karplus-Strong-ish): bright attack, quick decay.
-  List<double> _pluck(double freq, double secs) {
-    final n = (_rate * secs).round();
-    final out = List<double>.filled(n, 0);
-    final period = (_rate / freq).round().clamp(2, 400);
-    final line = List<double>.generate(
-        period, (_) => _rand.nextDouble() * 2 - 1);
-    for (int i = 0; i < n; i++) {
-      final t = i / _rate;
-      out[i] = line[i % period] * exp(-t * 6.5) * 0.8;
-      line[i % period] = (line[i % period] + line[(i + 1) % period]) * 0.498;
-    }
-    return out;
-  }
-
   Uint8List _clip(String key, List<double> Function() build) =>
       _cache.putIfAbsent(key, () => _wav(build()));
 
