@@ -3,6 +3,7 @@ import '../services/audio_service.dart';
 import '../services/settings_service.dart';
 import '../theme/morning_press.dart';
 import '../theme/press_themes.dart';
+import '../transfer/transfer_ui.dart';
 
 /// Settings: music/SFX toggles, volume, stats, reset.
 class SettingsScreen extends StatefulWidget {
@@ -57,6 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+              TransferSaveTile(gameSlug: 'crossword'),
                   Text('Audio', style: Press.display(20, theme: t)),
                   const SizedBox(height: 8),
                   SettingRow(
