@@ -206,7 +206,7 @@ class _MenuScreenState extends State<MenuScreen> {
                           ],
                         ),
                         alignment: Alignment.center,
-                        child: Text('✦  Go PRO',
+                        child: Text(defaultTargetPlatform == TargetPlatform.iOS ? '⭐ Gold Star' : '✦  Go PRO',
                             style: Press.display(18, theme: t, color: t.paper)),
                       ),
                     ),

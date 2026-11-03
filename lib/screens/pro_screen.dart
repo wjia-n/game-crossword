@@ -67,7 +67,7 @@ class _ProScreenState extends State<ProScreen> {
         body: SafeArea(
           child: ValueListenableBuilder<bool>(
             valueListenable: widget.store.starOwned,
-            builder: (_, owned, _child) => Center(
+            builder: (_, owned, child) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(
