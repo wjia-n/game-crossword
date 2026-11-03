@@ -331,7 +331,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 Text('How to Play', style: Press.display(24, theme: t)),
                 const SizedBox(height: 12),
                 for (final line in [
-                  '• Pick a puzzle: Mini (easy), Classic (medium), or Expert (hard, PRO).',
+                  defaultTargetPlatform == TargetPlatform.iOS ? '• Pick a puzzle: Mini (easy), Classic (medium), or Expert (hard).' : '• Pick a puzzle: Mini (easy), Classic (medium), or Expert (hard, PRO).',
                   '• Tap a square to select its word — tap the same square again to flip across ↕ down.',
                   '• Type letters with the A–Z keyboard; ⌫ erases.',
                   '• Timed mode: beat the clock for bonus points. Relaxed: no timer, just vibes.',
@@ -384,7 +384,7 @@ class _PuzzleCard extends StatelessWidget {
         children: [
           Text("Today's Puzzles", style: Press.display(20, theme: t)),
           const SizedBox(height: 4),
-          Text('Pick your crossword. Expert needs PRO.',
+          Text(defaultTargetPlatform == TargetPlatform.iOS ? 'Pick your crossword.' : 'Pick your crossword. Expert needs PRO.',
               style: Press.body(13, theme: t, color: t.paper.withValues(alpha: 0.7))),
           const SizedBox(height: 10),
           for (int tier = 0; tier < 3; tier++) ...[
@@ -560,7 +560,7 @@ class _ThemeCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 4),
-          Text('22 editions. First 4 free, the rest PRO.',
+          Text(defaultTargetPlatform == TargetPlatform.iOS ? '22 editions to explore.' : '22 editions. First 4 free, the rest PRO.',
               style: Press.body(13, theme: t, color: t.paper.withValues(alpha: 0.7))),
           const SizedBox(height: 10),
           GridView.builder(
@@ -651,7 +651,7 @@ class _StyleCard extends StatelessWidget {
         children: [
           Text('Cell Styles', style: Press.display(20, theme: t)),
           const SizedBox(height: 4),
-          Text('How your puzzle squares look. First 3 free, the rest PRO.',
+          Text(defaultTargetPlatform == TargetPlatform.iOS ? 'How your puzzle squares look.' : 'How your puzzle squares look. First 3 free, the rest PRO.',
               style: Press.body(13, theme: t, color: t.paper.withValues(alpha: 0.7))),
           const SizedBox(height: 10),
           Wrap(
