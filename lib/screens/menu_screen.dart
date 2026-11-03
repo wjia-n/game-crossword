@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:share_plus/share_plus.dart';
@@ -225,7 +226,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   const SizedBox(height: 14),
                   _StyleCard(theme: t, state: this),
                   const SizedBox(height: 14),
-                  _SupportCard(theme: t, store: _store),
+                  if (defaultTargetPlatform != TargetPlatform.iOS)
+                    _SupportCard(theme: t, store: _store),
                   const SizedBox(height: 14),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
